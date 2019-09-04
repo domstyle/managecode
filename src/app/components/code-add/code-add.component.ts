@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { CodeService } from 'src/app/service/code.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-code-add',
@@ -12,7 +13,8 @@ export class CodeAddComponent implements OnInit {
   angForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private cs: CodeService
+    private cs: CodeService,
+    private router: Router
   ) {
     this.createForm();
   }
@@ -25,8 +27,9 @@ export class CodeAddComponent implements OnInit {
     });
   }
 
-  addCode(code_id, code_name, code_desc) {
-    this.cs.addCode(code_id, code_name, code_desc);
+  async addCode(code_id, code_name, code_desc) {
+    await this.cs.addCode(code_id, code_name, code_desc);
+    this.router.navigate(['code']);
   }
 
   ngOnInit() {

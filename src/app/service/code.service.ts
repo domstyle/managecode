@@ -10,18 +10,19 @@ export class CodeService {
 
   constructor(private http: HttpClient) { }
 
-  addCode(code_id, code_name, code_desc) {
+  async addCode(code_id, code_name, code_desc) {
     const obj = {
       code_id: code_id,
       code_name: code_name,
       code_desc: code_desc
     };
     console.log(obj);
-    this.http.post(`${this.uri}/add`, obj)
+    await this.http.post(`${this.uri}/add`, obj)
         .subscribe(res => console.log('Done'));
   }
 
   getCode() {
+    console.log("getCode");
     return this.http.get(`${this.uri}`);
   }
 
@@ -31,14 +32,14 @@ export class CodeService {
             .get(`${this.uri}/edit/${id}`);
   }
 
-  updateCode(code_id, code_name, code_desc, id) {
+  async updateCode(code_id, code_name, code_desc, id) {
 
     const obj = {
       code_id: code_id,
       code_name: code_name,
       code_desc: code_desc
     };
-    this
+    await this
       .http
       .post(`${this.uri}/update/${id}`, obj)
       .subscribe(res => console.log('Done'));

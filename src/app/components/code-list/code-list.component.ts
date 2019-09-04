@@ -9,23 +9,24 @@ import { CodeService } from '../../service/code.service';
 })
 export class CodeListComponent implements OnInit {
 
-  code: Code[];
+  codeList: Code[];
 
   constructor(
     private cs: CodeService
   ) { }
 
-  deleteCode(id) {
-    this.cs.deleteCode(id).subscribe(res => {
+  async deleteCode(id) {
+    await this.cs.deleteCode(id).subscribe(res => {
       console.log('Deleted');
     });
+    document.location.reload();
   }
 
   ngOnInit() {
     this.cs
     .getCode()
     .subscribe((data: Code[]) => {
-      this.code = data;
+      this.codeList = data;
   });
   }
 

@@ -13,7 +13,7 @@
             <td>{{ code.code_id }}</td>
             <td>{{ code.code_name }}</td>
             <td>{{ code.code_desc }}</td>
-            <td><a [routerLink]="['/edit', code._id]" class="btn btn-primary">Edit</a></td>
+            <td><a [routerLink]="['/code/edit', code._id]" class="btn btn-primary">Edit</a></td>
             <td><a (click)="deleteCode(code._id)" class="btn btn-danger">Delete</a></td>
         </tr>
     </tbody>

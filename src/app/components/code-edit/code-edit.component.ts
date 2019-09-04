@@ -30,9 +30,9 @@ export class CodeEditComponent implements OnInit {
     });
   }
 
-  updateBusiness(code_id, code_name, code_desc) {
-    this.route.params.subscribe(params => {
-       this.cs.updateCode(code_id, code_name, code_desc, params['id']);
+  updateCode(code_id, code_name, code_desc) {
+    this.route.params.subscribe(async params => {
+       await this.cs.updateCode(code_id, code_name, code_desc, params['id']);
        this.router.navigate(['code']);
     });
   }

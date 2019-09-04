@@ -39,9 +39,9 @@ codeRoutes.route('/edit/:id').get(function (req, res) {
 
 //  Defined update route
 codeRoutes.route('/update/:id').post(function (req, res) {
-    Code.findById(req.params.id, function(err, next, code) {
+    Code.findById(req.params.id, function(err, code) {
     if (!code)
-      return next(new Error('Could not load Document'));
+      return new Error('Could not load Document');
     else {
         code.code_id = req.body.code_id;
         code.code_name = req.body.code_name;
