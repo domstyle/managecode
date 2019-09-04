@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Code ID</label>
+          <input type="text" class="form-control" formControlName="code_id" #code_id [(ngModel)] = "code.code_id" />
+        </div>
+        <div *ngIf="angForm.controls['code_id'].invalid && (angForm.controls['code_id'].dirty || angForm.controls['code_id'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['code_id'].errors.required">
+            Code ID is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Code Name </label>
+          <input type="text" class="form-control" formControlName="code_name" #code_name [(ngModel)] = "code.code_name" />
+        </div>
+        <div *ngIf="angForm.controls['code_name'].invalid && (angForm.controls['code_name'].dirty || angForm.controls['code_name'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['code_name'].errors.required">
+            Code Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Code Desc </label>
+          <input type="text" class="form-control" formControlName="code_desc" #code_desc [(ngModel)] = "code.code_desc" />
+        </div>
+        <div *ngIf="angForm.controls['code_desc'].invalid && (angForm.controls['code_desc'].dirty || angForm.controls['code_desc'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['code_desc'].errors.required">
+            Code Desc is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <button (click)="updateCode(code_id.value, code_name.value, code_desc.value)"
+          [disabled]="angForm.invalid" 
+          class="btn btn-primary">Update Code</button>
+        </div>
+      </form>
+    </div>
+  </div>
