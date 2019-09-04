@@ -18,7 +18,7 @@ export class CodeService {
     };
     console.log(obj);
     await this.http.post(`${this.uri}/add`, obj)
-        .subscribe(res => console.log('Done'));
+        .toPromise();
   }
 
   getCode() {
@@ -42,7 +42,7 @@ export class CodeService {
     await this
       .http
       .post(`${this.uri}/update/${id}`, obj)
-      .subscribe(res => console.log('Done'));
+      .toPromise();
   }
 
   deleteCode(id) {
