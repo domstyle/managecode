@@ -1,11 +1,17 @@
+require('dotenv').config();
+
 const express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     mongoose = require('mongoose'),
-    config = require('./DB');
+    config = require('./DB'),
+    { isAuthenticated } = require('./middlewares/auth');
 
 const codeRoute = require('./routes/code.route');
+const authRoute = require('./routes/auth.route');
+const userRoute = require('./routes/user.route');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -13,9 +19,13 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 );
 
 const app = express();
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/code', codeRoute);
+app.use('/auth', authRoute);
+app.use('/users', isAuthenticated, userRoute);
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function(){
