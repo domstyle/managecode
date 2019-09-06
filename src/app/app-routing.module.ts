@@ -3,12 +3,26 @@ import { Routes, RouterModule } from '@angular/router';
 import { CodeAddComponent } from './components/code-add/code-add.component';
 import { CodeEditComponent } from './components/code-edit/code-edit.component';
 import { CodeListComponent } from './components/code-list/code-list.component';
+import {SigninComponent} from './components/signin/signin.component';
+import {AuthGuard} from './guards/auth.guard';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {RegisterComponent} from './components/register/register.component';
 
 
 const routes: Routes = [
-  {path: 'code/create', component: CodeAddComponent},
-  {path: 'code/edit/:id', component: CodeEditComponent},
-  {path: 'code', component: CodeListComponent}
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'signin', component: SigninComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Dashboard', subtitle: 'JWT Authentication' }
+  },
+  { path: 'register', component: RegisterComponent },
+  { path: 'code/create', component: CodeAddComponent, canActivate: [AuthGuard] },
+  { path: 'code/edit/:id', component: CodeEditComponent, canActivate: [AuthGuard] },
+  { path: 'code', component: CodeListComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({

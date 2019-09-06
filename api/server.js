@@ -10,7 +10,7 @@ const express = require('express'),
 
 const codeRoute = require('./routes/code.route');
 const authRoute = require('./routes/auth.route');
-const userRoute = require('./routes/user.route');
+const userRoute = require('./routes/users.route');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(

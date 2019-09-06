@@ -1,0 +1,21 @@
+
+.container {
+  padding-top: 120px;
+}
+.alert {
+  padding: 10px;
+}
+form {
+  padding: 30px;
+  background: #fff;
+  border-radius: 5px;
+}
+.alert-box {
+  min-height: 30px;
+  padding: 5px 0;
+}
+button[type=submit] {
+  margin-top: 30px;
+  background-color: #00d1b2;
+  border-color: transparent;
+}

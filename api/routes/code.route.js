@@ -18,8 +18,8 @@ codeRoutes.route('/add').post(function (req, res) {
 });
 
 // Defined get data(index or listing) route
-codeRoutes.route('/').get(function (req, res) {
-    Code.find(function (err, code){
+codeRoutes.route('/').post(function (req, res) {
+    Code.find(({userid: req.body.userid}), function (err, code){
     if(err){
       console.log(err);
     }
@@ -43,12 +43,12 @@ codeRoutes.route('/update/:id').post(function (req, res) {
     if (!code)
       return new Error('Could not load Document');
     else {
-        code.code_id = req.body.code_id;
-        code.code_name = req.body.code_name;
-        code.code_desc = req.body.code_desc;
+      code.code_id = req.body.code_id;
+      code.code_name = req.body.code_name;
+      code.code_desc = req.body.code_desc;
 
-        code.save().then(code => {
-          res.json('Update complete');
+      code.save().then(code => {
+        res.json('Update complete');
       })
       .catch(err => {
             res.status(400).send("unable to update the database");
