@@ -1,43 +1,36 @@
-<div class="container">
-  <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+<div class="card">
+  <div class="card-body">
     <form [formGroup]="signinForm" (ngSubmit)="signin()">
-      <div id="userid" class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-user"></i>
-        </div>
+      <div id="userid" class="form-group">
         <input formControlName="userid" type="text" class="form-control input-lg" name="userid" placeholder="userid">
       </div>
 
-      <div class="alert-box">
-        <em *ngIf="userid.errors?.required && userid.touched" class="text-danger">
-          userid를 입력하세요!</em>
+      <div *ngIf="userid.invalid && (userid.dirty || userid.touched)" class="alert alert-danger">
+        <div *ngIf="userid.errors?.required && userid.touched">
+          userid를 입력하세요!</div>
       </div>
 
-      <div id="password" class="input-group">
-        <div class="input-group-addon">
-          <i class="fa fa-unlock-alt"></i>
-        </div>
+      <div id="password" class="form-group">
         <input formControlName="password" type="password" class="form-control input-lg" name="password" placeholder="password">
       </div>
 
-      <div class="alert-box">
-        <em *ngIf="password.errors?.required && password.touched" class="text-danger">
-          password를 입력하세요!</em>
-        <em *ngIf="password.errors?.pattern && password.touched" class="text-danger">
-          password는 영문 또는 숫자로 입력하세요!</em>
-        <em *ngIf="password.errors?.minlength && password.touched" class="text-danger">
-          password는 4자리 이상으로 입력하세요!</em>
-        <em *ngIf="password.errors?.maxlength && password.touched" class="text-danger">
-          password는 10자리 이하로 입력하세요!</em>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors?.required && password.touched">
+          password를 입력하세요!</div>
+        <div *ngIf="password.errors?.pattern && password.touched">
+          password는 영문 또는 숫자로 입력하세요!</div>
+        <div *ngIf="password.errors?.minlength && password.touched">
+          password는 4자리 이상으로 입력하세요!</div>
+        <div *ngIf="password.errors?.maxlength && password.touched">
+          password는 10자리 이하로 입력하세요!</div>
       </div>
 
       <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
 
-      <button [disabled]="signinForm.invalid" type="submit" class="btn btn-lg btn-success btn-block">Sign In</button>
-      <a [routerLink]="['/register']">Register</a>
+      <div>
+        <button [disabled]="signinForm.invalid" type="submit" class="btn btn-primary">Sign In</button>
+        <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+      </div>
     </form>
-
-    <pre>{{ signinForm.value | json }}</pre>
-    <pre>{{ signinForm.status }}</pre>
   </div>
 </div>
