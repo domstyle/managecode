@@ -16,6 +16,10 @@ import { SigninComponent } from './components/signin/signin.component';
 import {JwtModule} from '@auth0/angular-jwt';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
+import { GroupListComponent } from './components/group-list/group-list.component';
+import { GroupEditComponent } from './components/group-edit/group-edit.component';
+import { GroupAddComponent } from './components/group-add/group-add.component';
+import {GroupService} from './service/group.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,10 @@ import { RegisterComponent } from './components/register/register.component';
     CodeEditComponent,
     SigninComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    GroupListComponent,
+    GroupEditComponent,
+    GroupAddComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,8 @@ import { RegisterComponent } from './components/register/register.component';
   providers: [
     CodeService,
     AuthService,
-    UserService
+    UserService,
+    GroupService
   ],
   bootstrap: [AppComponent]
 })

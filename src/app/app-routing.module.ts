@@ -7,6 +7,9 @@ import {SigninComponent} from './components/signin/signin.component';
 import {AuthGuard} from './guards/auth.guard';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {RegisterComponent} from './components/register/register.component';
+import {GroupEditComponent} from './components/group-edit/group-edit.component';
+import {GroupListComponent} from './components/group-list/group-list.component';
+import {GroupAddComponent} from './components/group-add/group-add.component';
 
 
 const routes: Routes = [
@@ -22,6 +25,9 @@ const routes: Routes = [
   { path: 'code/create', component: CodeAddComponent, canActivate: [AuthGuard] },
   { path: 'code/edit/:id', component: CodeEditComponent, canActivate: [AuthGuard] },
   { path: 'code', component: CodeListComponent, canActivate: [AuthGuard] },
+  { path: 'group/create', component: GroupAddComponent, canActivate: [AuthGuard] },
+  { path: 'group/edit/:id', component: GroupEditComponent, canActivate: [AuthGuard] },
+  { path: 'group', component: GroupListComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'dashboard' }
 ];
 
