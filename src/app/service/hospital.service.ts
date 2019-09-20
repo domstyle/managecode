@@ -5,52 +5,49 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
-export class GroupService {
+export class HospitalService {
 
-  uri = 'http://localhost:4000/group';
+  uri = 'http://localhost:4000/hospital';
   TOKEN_NAME = 'jwt_token';
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
-  async addGroup(group_id, group_name, code_ids) {
+  async addHospital(hospital_id, hospital_name, hospital_addr, hospital_desc) {
     const obj = {
       userid: this.jwtHelper.decodeToken(this.getToken()).userid,
-      group_id: group_id,
-      group_name: group_name,
-      code_list: code_ids
+      hospital_id: hospital_id,
+      hospital_name: hospital_name,
+      hospital_addr: hospital_addr,
+      hospital_desc: hospital_desc
     };
-    console.log(obj);
-    await this.http.post(`${this.uri}/add`, obj)
-      .toPromise();
+    await  this.http.post(`${this.uri}/add`, obj).toPromise();
   }
 
-  getGroup() {
-    console.log("getGroup");
+  getHospital() {
     return this.http.post(`${this.uri}`, {userid: this.jwtHelper.decodeToken(this.getToken()).userid});
   }
 
-  editGroup(id) {
+  editHospital(id) {
     return this
       .http
       .get(`${this.uri}/edit/${id}`);
   }
 
-  async updateGroup(group_id, group_name, code_ids, id) {
-
+  async updateHospital(hospital_id, hospital_name, hospital_addr, hospital_desc, id) {
     const obj = {
-      group_id: group_id,
-      group_name: group_name,
-      code_list: code_ids
+      hospital_id: hospital_id,
+      hospital_name: hospital_name,
+      hospital_addr: hospital_addr,
+      hospital_desc: hospital_desc
     };
 
-    console.log("updateGroup:obj=" + obj);
     await this
       .http
       .post(`${this.uri}/update/${id}`, obj)
       .toPromise();
   }
 
-  deleteGroup(id) {
+  deleteHospital(id) {
     return this
       .http
       .get(`${this.uri}/delete/${id}`);

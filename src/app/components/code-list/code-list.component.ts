@@ -17,7 +17,7 @@ export class CodeListComponent implements OnInit {
 
   async deleteCode(id) {
     await this.cs.deleteCode(id).subscribe(res => {
-      console.log('Deleted');
+      console.log('Deleted Code');
     });
     document.location.reload();
   }

@@ -5,4 +5,5 @@ export default class Group {
   group_name: String;
   code_ids: String[];
   code_list: Code[];
+  _id: String;
 }

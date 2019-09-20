@@ -20,6 +20,12 @@ import { GroupListComponent } from './components/group-list/group-list.component
 import { GroupEditComponent } from './components/group-edit/group-edit.component';
 import { GroupAddComponent } from './components/group-add/group-add.component';
 import {GroupService} from './service/group.service';
+import { CodeSearchComponent } from './components/code-search/code-search.component';
+import { CodeSearchPipe } from './pipe/code-search.pipe';
+import { HospitalListComponent } from './components/hospital-list/hospital-list.component';
+import { HospitalAddComponent } from './components/hospital-add/hospital-add.component';
+import { HospitalEditComponent } from './components/hospital-edit/hospital-edit.component';
+import {HospitalService} from './service/hospital.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,12 @@ import {GroupService} from './service/group.service';
     RegisterComponent,
     GroupListComponent,
     GroupEditComponent,
-    GroupAddComponent
+    GroupAddComponent,
+    CodeSearchComponent,
+    CodeSearchPipe,
+    HospitalListComponent,
+    HospitalAddComponent,
+    HospitalEditComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +66,8 @@ import {GroupService} from './service/group.service';
     CodeService,
     AuthService,
     UserService,
-    GroupService
+    GroupService,
+    HospitalService
   ],
   bootstrap: [AppComponent]
 })

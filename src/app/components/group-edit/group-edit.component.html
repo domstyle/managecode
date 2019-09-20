@@ -1,1 +1,52 @@
-<p>group-edit works!</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Group ID </label>
+        <input type="text" class="form-control" formControlName="group_id" #group_id [(ngModel)]="group.group_id" />
+      </div>
+      <div *ngIf="angForm.controls['group_id'].invalid && (angForm.controls['group_id'].dirty || angForm.controls['group_id'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['group_id'].errors.required">
+          Group ID is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Group Name </label>
+        <input type="text" class="form-control" formControlName="group_name" #group_name [(ngModel)]="group.group_name"/>
+      </div>
+      <div *ngIf="angForm.controls['group_name'].invalid && (angForm.controls['group_name'].dirty || angForm.controls['group_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['group_name'].errors.required">
+          Group Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Code Ids </label>
+        <input type="text" class="form-control" #code_id (input)="searchCodeId = $event.target.value"/> <button class="btn btn-block btn-dark mt-2 mb-2" (click)="addCode(searchCodeId)">add Code</button>
+        <app-code-search [startWith]="searchCodeId"></app-code-search>
+        <table class="table table-bordered mt-4">
+          <thead>
+          <tr>
+            <th>Code ID</th>
+            <th>Code Name</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let code of addedCodeList">
+            <td><input type="hidden" name="code_ids" value="{{code._id}}"/>{{code.code_id}}</td>
+            <td>{{code.code_name}}</td>
+            <td><button class="btn btn-danger" (click)="deleteCode(code._id)">Delete</button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-group">
+        <button (click)="updateGroup(group_id.value, group_name.value)"
+                [disabled]="angForm.invalid"
+                class="btn btn-primary">
+          Update Group
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -12,8 +12,8 @@
   <tr *ngFor="let group of groupList">
     <td>{{ group.group_id }}</td>
     <td>{{ group.group_name }}</td>
-    <td>{{ group.code_ids }}</td>
-    <td><a [routerLink]="['/code/edit', group._id]" class="btn btn-primary">Edit</a></td>
+    <td><p *ngFor="let code of group.code_list">{{ code.code_name }}</p></td>
+    <td><a [routerLink]="['/group/edit', group._id]" class="btn btn-primary">Edit</a></td>
     <td><a (click)="deleteGroup(group._id)" class="btn btn-danger">Delete</a></td>
   </tr>
   </tbody>

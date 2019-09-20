@@ -19,13 +19,11 @@ export class CodeService {
       code_name: code_name,
       code_desc: code_desc
     };
-    console.log(obj);
     await this.http.post(`${this.uri}/add`, obj)
         .toPromise();
   }
 
   getCode() {
-    console.log("getCode");
     return this.http.post(`${this.uri}`, {userid: this.jwtHelper.decodeToken(this.getToken()).userid});
   }
 

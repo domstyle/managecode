@@ -10,6 +10,9 @@ import {RegisterComponent} from './components/register/register.component';
 import {GroupEditComponent} from './components/group-edit/group-edit.component';
 import {GroupListComponent} from './components/group-list/group-list.component';
 import {GroupAddComponent} from './components/group-add/group-add.component';
+import {HospitalListComponent} from './components/hospital-list/hospital-list.component';
+import {HospitalAddComponent} from './components/hospital-add/hospital-add.component';
+import {HospitalEditComponent} from './components/hospital-edit/hospital-edit.component';
 
 
 const routes: Routes = [
@@ -28,6 +31,9 @@ const routes: Routes = [
   { path: 'group/create', component: GroupAddComponent, canActivate: [AuthGuard] },
   { path: 'group/edit/:id', component: GroupEditComponent, canActivate: [AuthGuard] },
   { path: 'group', component: GroupListComponent, canActivate: [AuthGuard] },
+  { path: 'hospital/create', component: HospitalAddComponent, canActivate: [AuthGuard] },
+  { path: 'hospital/edit/:id', component: HospitalEditComponent, canActivate: [AuthGuard] },
+  { path: 'hospital', component: HospitalListComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'dashboard' }
 ];
 
